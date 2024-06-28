@@ -79,8 +79,15 @@ etablissements = pydeck.Layer(
     get_fill_color=[255, 140, 0],
     get_line_color=[0, 0, 0],
 )
+seine = pydeck.Layer(
+    "GeoJsonLayer",
+    "assets/seine.geojson",
+    pickable=False,
+    line_width_min_pixels=5,
+    get_line_color=[0,0,255]
+)
 r = pydeck.Deck(
-    layers=[polygon, geojson,etablissements],
+    layers=[polygon, geojson,etablissements,seine],
     initial_view_state=INITIAL_VIEW_STATE,
     api_keys={"mapbox": mapbox_api_token},
 )
@@ -101,7 +108,7 @@ tab1 = dbc.Tab(
                     dbc.ModalFooter(dbc.Button("Close", id="close_tab1", className="ms-auto", n_clicks=0))
                 ],id="modal_tab1",is_open=False
             ),
-            dash_deck.DeckGL(r.to_json(), id="deck-gl", enableEvents=True, mapboxKey=r.mapbox_key,style={'top': '40px','height':'95%'})
+            dash_deck.DeckGL(r.to_json(), id="deck-gl", enableEvents=True, mapboxKey=r.mapbox_key,style={'position': 'relative','top': '70px','height':'92vh'})
         ]),
     label="Carte 3D", tab_id="t1"
 )
@@ -145,11 +152,12 @@ tab3 = dbc.Tab( html.Div([
                    hideout=dict(colorscale=colorscale, classes=classes, style=style, colorProp="moyenne_ips"),),
         dl.GeoJSON(url='/assets/etablissements.geojson', id="map_etablissements",cluster=True, zoomToBoundsOnClick=True,
                    superClusterOptions={"radius": 100}),
+        dl.GeoJSON(url='assets/seine.geojson'),
         colorbar
-    ],style={'height': '100vh'}),
+    ],style={'height': '93vh'}),
     html.Div(id="capital"),
 
-]),label="Carte 2D", tab_id="t3",style={"top":"60px","position":"relative","left" : "-300px"})
+]),label="Carte 2D", tab_id="t3",style={"top":"60px","position":"relative","width" : "100%"})
 app.layout = dbc.Container(dbc.Tabs([tab3, tab1, tab2], active_tab='t3', id='tabs',style={'left':'0px', 'position' : 'absolute'}))
 
 @app.callback(

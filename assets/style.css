@@ -2,3 +2,11 @@ h2
 {
     padding-top: 20px;
 }
+.container
+{
+    max-width: 100%;
+}
+.nav-item
+{
+    width: 30vw;
+}
