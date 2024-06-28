@@ -145,4 +145,4 @@ def toggle_modal(close, infos_open, is_open):
     return is_open,placeholder_nom_etablissement,placeholder_type_etablissement,placeholder_localisation_etablissement,placeholder_ips_etablissement,placeholder_image_etablissement
 
 if __name__ == "__main__":
-    app.run_server()
+    app.run_server(port=80,host="0.0.0.0")
