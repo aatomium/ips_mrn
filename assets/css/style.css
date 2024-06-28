@@ -20,7 +20,7 @@ img[src*="#carte"]
 
 @media(max-width: 500px)
 {
-    img
+    img[src*="#carte"]
     {
         width: 100vw !important;
     }
