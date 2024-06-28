@@ -10,3 +10,10 @@ h2
 {
     width: 30vw;
 }
+img[src*="#carte"]
+{
+    width: 50vw;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

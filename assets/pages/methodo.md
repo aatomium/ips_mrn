@@ -16,7 +16,9 @@ J'ai aussi importé une base de données des IPS de tous les établissements sco
 
 J'ai ensuite importé toutes ces données dans une base de données PostgreSQL. J'ai réalisé un petit script SQL qui m'a permit d'obtenir, pour chaque ville, le nombre d'établissements scolaires, ainsi que la moyenne des IPS de ces établissements.
 
-Ces informations acquises, j'ai pû réaliser une carte avec QGis. 
+Ces informations acquises, j'ai pû réaliser une carte avec QGis :  
+
+![Carte réalisée avec QGIS](/assets/images/qgis_carte.png#carte)  
 
 J'ai ensuite réalisé une première carte interactive en 2D avec Dash Leaflet et Dash Bootstrap pour la modale. 
 Pour obtenir les images des établissements, j'ai écrit un script de pré-process, qui stocke la première image trouvée sur Google de l'établissement (récupérée avec ICrawler), et la renomme en fonction du numéro UAI. 

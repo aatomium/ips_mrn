@@ -250,10 +250,10 @@ def toggle_modal_3d(close, infos_open, is_open):
         - image_etablissement string : image of establishment that we wanna display on modal
     """
     if infos_open:
-        # get properties of establishment which was clicked
-        prop = infos_open['object']['properties']
         # verify the clicked data is on the establishment layer (otherwise Layer is None for unknown reason)
         if infos_open['layer']:
+            # get properties of establishment which was clicked
+            prop = infos_open['object']['properties']
             nom = f"{prop['appellation_officielle']} ({prop['libelle_commune']})" 
             typee = f"Type d'établissement : {prop['denomination_principale']}, établissement {prop['secteur_public_prive_libe'].lower()}"
             localisation = f"Situé {prop['adresse_uai']}, à {prop['libelle_commune']} ({prop['code_postal_uai']})"
