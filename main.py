@@ -53,8 +53,8 @@ ctg = ["{} - {}".format(cls, classes[i + 1], classes[i+2]) for i, cls in enumera
 colorbar = dlx.categorical_colorbar(categories=ctg, colorscale=colorscale, width=300, height=30, position="bottomleft")
 
 # Geojson rendering logic, must be JavaScript as it is executed in clientside.
-style_handle = assign(open("assets/style_handle.js").read())
-on_each_feature = assign(open("assets/on_each_feature.js").read())
+style_handle = assign(open("assets/js/style_handle.js").read())
+on_each_feature = assign(open("assets/js/on_each_feature.js").read())
 
 tab_2d = dbc.Tab(html.Div([
     # modal displayed on click
@@ -71,14 +71,14 @@ tab_2d = dbc.Tab(html.Div([
     # 2D map
     dl.Map(center=[49.41969,1.05229], zoom=11, children=[
         dl.TileLayer(),
-        dl.GeoJSON(url="/assets/communes.geojson",
+        dl.GeoJSON(url="/assets/data/communes.geojson",
                    style=style_handle,
                    id="map_ips",
                    onEachFeature=on_each_feature,
                    hideout=dict(colorscale=colorscale, classes=classes, style=style, colorProp="moyenne_ips"),),
-        dl.GeoJSON(url='/assets/etablissements.geojson', id="map_etablissements",cluster=True, zoomToBoundsOnClick=True,
+        dl.GeoJSON(url='/assets/data/etablissements.geojson', id="map_etablissements",cluster=True, zoomToBoundsOnClick=True,
                    superClusterOptions={"radius": 100}),
-        dl.GeoJSON(url='assets/seine.geojson'),
+        dl.GeoJSON(url='assets/data/seine.geojson'),
         colorbar
     ],style={'height': '93vh'}),
 
@@ -140,7 +140,7 @@ def toggle_modal_2d(close, infos_open, is_open):
 
 communes = pydeck.Layer(
     'GeoJsonLayer',
-    "assets/communes.geojson",
+    "assets/data/communes.geojson",
     id="communes",
     pickable=False,
     stroked=True,
@@ -153,7 +153,7 @@ communes = pydeck.Layer(
 
 etablissements_3d = pydeck.Layer(
     "GeoJsonLayer",
-    "/assets/hauteur_etablissements.geojson",
+    "/assets/data/hauteur_etablissements.geojson",
     id="batiments",
     opacity=0.8,
     stroked=False,
@@ -168,7 +168,7 @@ etablissements_3d = pydeck.Layer(
 
 etablissements_pins = pydeck.Layer(
     "GeoJsonLayer",
-    "assets/etablissements.geojson",
+    "assets/data/etablissements.geojson",
     pickable=True,
     id="etablissements",
     opacity=0.8,
@@ -185,7 +185,7 @@ etablissements_pins = pydeck.Layer(
 
 seine = pydeck.Layer(
     "GeoJsonLayer",
-    "assets/seine.geojson",
+    "assets/data/seine.geojson",
     pickable=False,
     line_width_min_pixels=5,
     get_line_color=[0,0,255]
@@ -193,7 +193,7 @@ seine = pydeck.Layer(
 
 # define initial view state
 INITIAL_VIEW_STATE = pydeck.ViewState(
-    latitude=49.43911143788813, longitude=1.0980562166887944, zoom=11, max_zoom=16, pitch=45, bearing=0
+    latitude=49.43911143788813, longitude=1.0980562166887944, zoom=11, max_zoom=21, pitch=45, bearing=0
 )
 
 # create the Deck
@@ -280,7 +280,7 @@ def toggle_modal_3d(close, infos_open, is_open):
 
 
 # Open Markdown file as "methodo.md" and setup it in a tab
-f = open("assets/methodo.md",encoding="utf8")
+f = open("assets/pages/methodo.md",encoding="utf8")
 tab_metho = dbc.Tab(
     html.Div(
         [
