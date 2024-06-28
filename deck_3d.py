@@ -103,7 +103,7 @@ tab1 = dbc.Tab(
             ),
             dash_deck.DeckGL(r.to_json(), id="deck-gl", enableEvents=True, mapboxKey=r.mapbox_key,style={'top': '40px','height':'95%'})
         ]),
-    label="Carte", tab_id="t1"
+    label="Carte 3D", tab_id="t1"
 )
 f = open("methodo.md",encoding="utf8")
 tab2 = dbc.Tab(
@@ -150,7 +150,7 @@ tab3 = dbc.Tab( html.Div([
     html.Div(id="capital"),
 
 ]),label="Carte 2D", tab_id="t3",style={"top":"60px","position":"relative","left" : "-300px"})
-app.layout = dbc.Container(dbc.Tabs([tab1, tab3, tab2], active_tab='t1', id='tabs',style={'left':'0px', 'position' : 'absolute'}))
+app.layout = dbc.Container(dbc.Tabs([tab3, tab1, tab2], active_tab='t3', id='tabs',style={'left':'0px', 'position' : 'absolute'}))
 
 @app.callback(
     Output("modal_tab1", "is_open"),
