@@ -1,4 +1,11 @@
 # Carte interactive des IPS de de la Métropole de Rouen Normandie
+<p align="center">
+    <a href="https://github.com/aatomium/ips_mrn/graphs/contributors" alt="Contributors">
+        <img src="https://img.shields.io/github/contributors/aatomium/ips_mrn" /></a>
+    <a href="https://github.com/aatomium/ips_mrn/pulse" alt="Activity">
+        <img src="https://img.shields.io/github/commit-activity/m/aatomium/ips_mrn" /></a>
+
+Accessible sur https://ips-mrn.onrender.com
 
 ## Qu'est ce qu'un IPS ?
 
